@@ -46,8 +46,8 @@
 - [x] Subject-filtered list
 - [x] Unit and UI tests
 - [ ] Optional add/edit/delete bonus, if attempted: not attempted
-- [ ] Local verification and CI review
-- [ ] Final diff and evidence review
+- [x] Local verification and CI review
+- [x] Final diff and evidence review
 
 ## Verification plan
 
