@@ -6,12 +6,20 @@ you rejected or revised; if none was rejectable, explain why.
 
 | Date | Tool/task | Student review | Evidence |
 | --- | --- | --- | --- |
-| YYYY-MM-DD | Replace this row with your first entry | Describe the inspection | Command, test, diff, or artifact |
+| 2026-11-09 | Claude Code: walked through the starter repo (README, TASKS_AND_GRADES, model, store, seed data, tests) and explained the required screens, identifiers and grading | Read the requirements myself. Confirmed that the model and the store (including the bonus methods) are supplied, and that only the UI and tests need to be written | Repository files at commit `938bf69` |
+| 2026-11-09 | Claude Code: explained `UITableView` data source/delegate, cell reuse, self-sizing cells, and reviewed the lecture example project `UI1` | Will reuse closure-initialized views, the SnapKit syntax and `addTarget` buttons. Will not reuse the fixed-size button, hard-coded colors, SwiftUI wrapper or performance tests | Explanation only; no repository change |
+| 2026-11-09 | Claude Code: drafted `PLAN.md` (MVC boundary, shared store, navigation, filtering tests, UI/accessibility, verification plan) | **Revised:** rewrote and shortened the draft in my own words, and removed details I did not need in the plan | `git diff PLAN.md` |
+| 2026-11-09 | Claude Code: explained `StudentCell` step by step (closure-initialized views, Dynamic Type fonts, SnapKit constraints in `contentView`, `configure(with:)`, accessibility identifier/label) | Wrote the cell myself with agent guidance. Fixed two compile errors in the preview (a wrong constant name, then the wrong argument label). After review, changed `super.init` to pass the `reuseIdentifier` parameter through instead of the constant | `xcodebuild ... build` → `** BUILD SUCCEEDED **`; `git diff StudentDirectory/StudentCell.swift` |
+| 2026-11-09 | Claude Code: explained why the cell preview looked stretched (a bare `UIView` preview fills the device) and suggested `#Preview(traits: .sizeThatFitsLayout)` | Understood that it was a preview artifact, not a layout bug. Noted that UI tests must use identifiers, not formatted numbers | Preview screenshot; explanation only |
+| 2026-11-09 | Claude Code: explained `StudentListViewController` (dependency-injected store, computed `students` instead of a copied array, `title = subject ?? "Students"`, `studentList` identifier, `reloadData` in `viewWillAppear`) | Wrote the controller myself. | `xcodebuild ... build` → `** BUILD SUCCEEDED **` |
+| 2026-11-09 | Claude Code: diagnosed a black screen on launch. The generated Info.plist has an empty `UISceneConfigurations`, and the starter's `configurationForConnecting` did not set `delegateClass`, so `SceneDelegate` never ran (the starter placeholder was never shown either; starter UI tests only check `runningForeground`) | Added `configuration.delegateClass = SceneDelegate.self` in `StudentDirectoryApp.swift`. The screen stayed black until I deleted the app from the simulator, because iOS restored the previously saved scene session and did not call `configurationForConnecting` again | `PlistBuddy` on the built app's `Info.plist`; simulator screenshots before (black) and after a fresh install (list of 10 students titled `Students`) |
+| 2026-11-10 | Claude Code: explained `StudentDetailViewController` | Wrote the detail screen myself and replaced the temporary `print` in `didSelectRowAt` with a push. **Accepted:** the agent's suggestion to use `UIAction` closures instead of the lecture's `addTarget`/`@objc` (this changes my earlier plan), because each button must know its own subject | `xcodebuild ... build` → `** BUILD SUCCEEDED **` |
+| 2026-11-10 | Claude Code: explained XCTest vs XCUITest and proposed 8 tests: 4 `StudentStoreTests` unit tests and 4 `StudentDirectoryFlowUITests` UI tests | Typed the tests myself. **Revised:** added a positive `"Math"` assertion to `testFilterIsCaseSensitive`, so it cannot pass with an always-empty filter. Confirmed the starter tests were not modified. The first full run was interrupted by a simulator SpringBoard crash (an environment issue, not app code); I reran it after restarting the simulators | README command `xcodebuild -project StudentDirectory.xcodeproj -scheme StudentDirectory -destination 'platform=iOS Simulator,name=iPhone 17' test`, run locally by me → all tests passed (`** TEST SUCCEEDED **`) |
 
 ## Final review
 
-- Agent/tool disclosure:
-- Accepted and rejected/revised recommendations:
-- Exact local test command and result:
-- CI URL/status:
-- Known limitation or remaining risk:
+- Agent/tool disclosure: Claude Code (Anthropic) was used for repository analysis, explanations, plan drafting, step-by-step code explanations (I typed the UI code myself), code review of my files, diagnosing the black-screen launch issue, and running build/test commands on the simulator.
+- Accepted and rejected/revised recommendations: Revised the agent's `PLAN.md` draft (rewritten and shortened). Revised the suggested cell. Accepted the review fix for `super.init(reuseIdentifier:)`. Further entries are to be added.
+- Exact local test command and result: _pending final run_
+- CI URL/status: _pending_
+- Known limitation or remaining risk: _pending_
