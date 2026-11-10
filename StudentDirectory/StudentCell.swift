@@ -96,14 +96,14 @@ final class StudentCell: UITableViewCell {
 }
 
 
-//#if DEBUG
-//import SwiftUI
-//
-//#Preview(traits: .sizeThatFitsLayout) {
-//    let cell = StudentCell(style: .default, reuseIdentifier: StudentCell.reuseId)
-//    if let student = StudentSeedData.students.first {
-//        cell.configure(with: student)
-//    }
-//    return cell
-//}
-//#endif
+#if DEBUG
+import SwiftUI
+
+#Preview(traits: .sizeThatFitsLayout) {
+    let cell = StudentCell(style: .default, reuseIdentifier: StudentCell.reuseId)
+    if let student = StudentSeedData.students.first {
+        cell.configure(with: student)
+    }
+    return cell
+}
+#endif

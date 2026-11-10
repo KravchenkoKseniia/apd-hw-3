@@ -45,7 +45,7 @@
 - [x] Detail screen and navigation
 - [x] Subject-filtered list
 - [x] Unit and UI tests
-- [ ] Optional add/edit/delete bonus, if attempted
+- [ ] Optional add/edit/delete bonus, if attempted: not attempted
 - [ ] Local verification and CI review
 - [ ] Final diff and evidence review
 
@@ -94,3 +94,8 @@ Final command (exactly as in the README), with the result recorded in
 ```bash
 xcodebuild -project StudentDirectory.xcodeproj -scheme StudentDirectory -destination 'platform=iOS Simulator,name=iPhone 17' test
 ```
+
+CI note (changed during implementation): the GitHub `macos-15` runner image
+updated on 2026-11-04, and its default Xcode 16.4 no longer finds an
+`iPhone 17` simulator. The workflow now selects Xcode 26.2 before running the
+same README command; the test command itself is unchanged.
