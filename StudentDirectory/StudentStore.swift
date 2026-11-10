@@ -7,6 +7,8 @@ final class StudentStore {
         self.students = students
     }
 
+    deinit {}
+
     func students(matchingSubject subject: String) -> [Student] {
         students.filter { $0.subjects.contains(subject) }
     }
